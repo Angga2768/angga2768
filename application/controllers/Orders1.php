@@ -53,7 +53,7 @@ class Orders1 extends Admin_Controller
         }
 
         if(in_array('updateOrder', $this->permission)) {
-            $buttons .= ' <a href="'.base_url('orders1/update/'.$value['id1']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
+            $buttons .= ' <a href="'.base_url('orders1/update1/'.$value['id1']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
         }
 
         if(in_array('deleteOrder', $this->permission)) {
@@ -109,7 +109,7 @@ class Orders1 extends Admin_Controller
         	
         	if($order_id) {
         		$this->session->set_flashdata('success', 'Successfully created');
-        		redirect('orders1/update/'.$order_id, 'refresh');
+        		redirect('orders1/update1/'.$order_id, 'refresh');
         	}
         	else {
         		$this->session->set_flashdata('errors', 'Error occurred!!');
@@ -172,18 +172,18 @@ public function update1($id = null)
     if($this->form_validation->run() == TRUE){
 
         $data = array(
-            'customer_name'    => $this->input->post('customer_name'),
-            'customer_address' => $this->input->post('customer_address'),
-            'customer_phone'   => $this->input->post('customer_phone'),
-            'no_po'            => $this->input->post('no_po'),
-            'tanggal_po'       => $this->input->post('tanggal_po'),
-            'no_do'            => $this->input->post('no_do'),
-            'tanggal_do'       => $this->input->post('tanggal_do'),
-            'nama_barang'      => $this->input->post('nama_barang'),
-            'keterangan'       => $this->input->post('keterangan'),
+            'customer_name1'    => $this->input->post('customer_name'),
+            'customer_address1' => $this->input->post('customer_address'),
+            'customer_phone1'   => $this->input->post('customer_phone'),
+            'no_po1'            => $this->input->post('no_po1'),
+            'tanggal_po1'       => $this->input->post('tanggal_po'),
+            'no_do1'            => $this->input->post('no_do'),
+            'tanggal_do1'       => $this->input->post('tanggal_do'),
+            'nama_barang1'      => $this->input->post('nama_barang'),
+            'keterangan1'       => $this->input->post('keterangan'),
         );
 
-        $this->Model_orders1->update($id,$data);
+        $this->model_orders1->update($id,$data);
 
         $this->session->set_flashdata('success','Order updated successfully');
         redirect('orders1','refresh');
@@ -191,7 +191,7 @@ public function update1($id = null)
     else{
 
         // ambil data order
-        $data['order'] = $this->Model_orders1->getOrdersData($id);
+        $data['order'] = $this->model_orders1->getOrdersData($id);
 
         if(empty($data['order'])){
             redirect('orders1');
